@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Helicopter : MonoBehaviour
 {
+    [SerializeField] private Lever _leftLever;
+    [SerializeField] private Lever _rightLever;
+    
     private int _numSuccess;
     private int _numFail;
+    private float _speed = 1f;
 
     void Start()
     {
@@ -14,6 +18,8 @@ public class Helicopter : MonoBehaviour
     }
     void Update()
     {
+        transform.Translate(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z % 90) * Time.deltaTime);
+        Debug.Log(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z));
         if (_numFail == 3)
         {
             // TODO: GameOver
