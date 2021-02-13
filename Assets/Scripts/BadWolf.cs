@@ -8,7 +8,8 @@ public class BadWolf : MonoBehaviour
 
     private void SpawnNewFire()
     {
-        // TODO: Spawn fire   
+        // TODO: Spawn fire
+        // new_fire.GetComponent<Fire>().time = 120f;
     }
     public void Success()
     {
