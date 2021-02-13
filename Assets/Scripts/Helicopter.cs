@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Helicopter : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Helicopter : MonoBehaviour
     
     private int _numSuccess;
     private int _numFail;
-    private float _speed = 1f;
+    public float speed = 1f;
 
     void Start()
     {
@@ -18,7 +19,8 @@ public class Helicopter : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z) * Time.deltaTime);
+        Debug.Log(_leftLever);
+        transform.Translate(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z % 90) * Time.deltaTime * speed);
         Debug.Log(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z));
         if (_numFail == 3)
         {
