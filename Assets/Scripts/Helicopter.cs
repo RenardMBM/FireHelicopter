@@ -7,7 +7,7 @@ public class Helicopter : MonoBehaviour
 
     void Start()
     {
-        
+        Debug.Log("))");
     }
 
 
