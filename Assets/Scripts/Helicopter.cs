@@ -11,17 +11,22 @@ public class Helicopter : MonoBehaviour
     private int _numSuccess;
     private int _numFail;
     public float speed = 1f;
+    private Rigidbody _playerRigidbody;
+    
 
     void Start()
     {
+        _playerRigidbody = GetComponent<Rigidbody>();
         _numSuccess = 0;
         _numFail = 0;
     }
     void Update()
     {
-        Debug.Log(_leftLever);
-        transform.Translate(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z % 90) * Time.deltaTime * speed);
-        Debug.Log(new Vector3(_leftLever.Rotation.eulerAngles.x, 0, _leftLever.Rotation.eulerAngles.z));
+        Debug.Log(new Vector3(
+            _leftLever.Rotation.eulerAngles.x - ((Mathf.Floor(_leftLever.Rotation.eulerAngles.x / 90) * 120)), 0,
+            _leftLever.Rotation.eulerAngles.z - ((Mathf.Floor(_leftLever.Rotation.eulerAngles.z / 90) * 120))));
+        _playerRigidbody.AddForce(new Vector3(_leftLever.Rotation.eulerAngles.x - ((Mathf.Floor(_leftLever.Rotation.eulerAngles.x / 90) * 120)), 0, 
+            _leftLever.Rotation.eulerAngles.z - ((Mathf.Floor(_leftLever.Rotation.eulerAngles.z / 90) * 120))), ForceMode.Force);
         if (_numFail == 3)
         {
             // TODO: GameOver
